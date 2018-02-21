@@ -1,0 +1,289 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Diaporama</title>
+  <style>
+    body {
+      background: #000;
+      color: #fff;
+      margin: 0;
+      overflow: hidden;
+    }
+  </style>
+  <body>
+   <div id="diaporama"></div>
+
+  <script type ="text/javascript" src="diaporama.bundle.js"></script>
+
+  <script type="text/javascript">
+
+    var json = {
+      "generator": {
+        "version": "0.6.0",
+        "url": "https://github.com/gre/diaporama-maker",
+        "maker": {
+          "defaultElement": {
+            "duration": 4500,
+            "transitionNext": {
+              "duration": 1000,
+              "name": "fade"
+            }
+          }
+        }
+      },
+      "timeline": [
+        {
+          "kenburns": {
+            "from": [
+              1,
+              [
+                0.4473684210526316,
+                0.6096491228070176
+              ]
+            ],
+            "to": [
+              0.7186223491457383,
+              [
+                0.45065789473684204,
+                0.6096491228070176
+              ]
+            ]
+          },
+          "duration": 4500,
+          "transitionNext": {
+            "duration": 100
+          },
+          "image": "realstate/01.jpg"
+        },
+        {
+          "kenburns": {
+            "from": [
+              1,
+              [
+                0.3684210526315789,
+                0.5
+              ]
+            ],
+            "to": [
+              0.7192247402271654,
+              [
+                0.3684210526315789,
+                0.49999999999999994
+              ]
+            ]
+          },
+          "duration": 4500,
+          "transitionNext": {
+            "duration": 1000,
+            "name": "fade"
+          },
+          "image": "realstate/02.jpg"
+        },
+        {
+          "duration": 4500,
+          "transitionNext": {
+            "duration": 1000,
+            "name": "fade"
+          },
+          "image": "realstate/06.jpg",
+          "kenburns": {
+            "from": [
+              1,
+              [
+                0.5,
+                0.5
+              ]
+            ],
+            "to": [
+              0.75,
+              [
+                0.5,
+                0.5
+              ]
+            ]
+          }
+        },
+        {
+          "kenburns": {
+            "from": [
+              0.7002991309529333,
+              [
+                0.8519736842105265,
+                0.3771929824561404
+              ]
+            ],
+            "to": [
+              1,
+              [
+                0.6381578947368417,
+                0.3991228070175438
+              ]
+            ]
+          },
+          "duration": 4500,
+          "transitionNext": {
+            "duration": 1000,
+            "name": "fade"
+          },
+          "image": "realstate/03.jpg"
+        },
+        {
+          "kenburns": {
+            "from": [
+              0.9065081812664895,
+              [
+                0.4243421052631579,
+                0.4868421052631579
+              ]
+            ],
+            "to": [
+              0.75,
+              [
+                0.6118421052631579,
+                0.4605263157894737
+              ]
+            ]
+          },
+          "duration": 4500,
+          "transitionNext": {
+            "duration": 1000,
+            "name": "fade"
+          },
+          "image": "realstate/04.jpg"
+        },
+        {
+          "duration": 4500,
+          "transitionNext": {
+            "duration": 1000,
+            "name": "fade"
+          },
+          "image": "realstate/05.jpg",
+          "kenburns": {
+            "from": [
+              1,
+              [
+                0.5,
+                0.5
+              ]
+            ],
+            "to": [
+              0.75,
+              [
+                0.5,
+                0.5
+              ]
+            ]
+          }
+        },
+        {
+          "duration": 4500,
+          "transitionNext": {
+            "duration": 1000,
+            "name": "fade"
+          },
+          "image": "realstate/09.jpg",
+          "kenburns": {
+            "from": [
+              1,
+              [
+                0.5,
+                0.5
+              ]
+            ],
+            "to": [
+              0.75,
+              [
+                0.5,
+                0.5
+              ]
+            ]
+          }
+        },
+        {
+          "kenburns": {
+            "from": [
+              0.8954667626357237,
+              [
+                0.7927631578947367,
+                0.5219298245614035
+              ]
+            ],
+            "to": [
+              0.9978310857477534,
+              [
+                0.930921052631579,
+                0.5263157894736842
+              ]
+            ]
+          },
+          "duration": 4500,
+          "transitionNext": {
+            "duration": 1000,
+            "name": "fade"
+          },
+          "image": "realstate/07.jpg"
+        },
+        {
+          "duration": 4500,
+          "transitionNext": {
+            "duration": 1000,
+            "name": "fade"
+          },
+          "image": "realstate/08.jpg",
+          "kenburns": {
+            "from": [
+              1,
+              [
+                0.5,
+                0.5
+              ]
+            ],
+            "to": [
+              0.75,
+              [
+                0.5,
+                0.5
+              ]
+            ]
+          }
+        }
+      ],
+      "transitions": [
+        {
+          "glsl": "#ifdef GL_ES\nprecision highp float;\n#endif\nuniform vec2 resolution;uniform sampler2D from, to;uniform float progress;void main() {vec2 p = gl_FragCoord.xy / resolution;gl_FragColor = mix(texture2D(from, p), texture2D(to, p), progress);}",
+          "uniforms": {},
+          "name": "fade"
+        }
+      ]
+    };
+
+    var div = document.getElementById("diaporama");
+
+    diaporama = Diaporama(div, json, {
+      width: window.innerWidth,
+      height: window.innerHeight,
+      autoplay: true,
+      loop: true
+    });
+
+    window.addEventListener("resize", function () {
+      diaporama.width = window.innerWidth;
+      diaporama.height = window.innerHeight;
+    });
+
+    document.body.addEventListener("keydown", function (e) {
+      switch (e.which) {
+        case 37: // Left
+          diaporama.prev();
+          break;
+        case 39: // Right
+          diaporama.next();
+          break;
+        case 32: // Space
+          diaporama.paused = !diaporama.paused;
+          break;
+      }
+    });
+  </script>
+</body>
+</html>
